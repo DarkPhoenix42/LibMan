@@ -22,7 +22,6 @@ const login = async (req, res) => {
         const user = results[0];
         bcrypt.compare(password, user.password, (err, result) => {
             if (err) {
-                console.error('Error comparing passwords : ', err);
                 return res.status(500).render('login', { message: 'Internal server error!' });
             }
 
@@ -73,7 +72,7 @@ const register = async (req, res) => {
 
     const username_regex = /^[a-zA-Z0-9_]{3,20}$/;
     if (!username_regex.test(username)) {
-        return res.status(400).render('regsiter', { message: 'Username must be between 3 and 20 characters long and can only contain letters, numbers, and underscores.' });
+        return res.status(400).render('register', { message: 'Username must be between 3 and 20 characters long and can only contain letters, numbers, and underscores.' });
     }
 
     if (check_password(password) === false) {
@@ -92,8 +91,7 @@ const register = async (req, res) => {
         const result = await execute_query(empty_check_query);
         is_first_user = ((result[0].contains_entries) === 0);
     }
-    catch (err) {
-        console.error(err);
+    catch {
         return res.status(500).render('register', { message: 'Internal server error!' });
     }
 
