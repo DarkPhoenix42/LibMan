@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const login_view = (req, res) => {
     return res.render('../views/login.ejs');
-}
+};
 
 const login = async (req, res) => {
     const { username, password } = req.body;
@@ -56,13 +56,13 @@ const login = async (req, res) => {
 
 const register_view = (req, res) => {
     return res.render('../views/register.ejs');
-}
+};
 
 
 function check_password(str) {
     var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     return re.test(str);
-}
+};
 
 const register = async (req, res) => {
 
