@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Requests</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Home</a>
+    </nav>
+    <div class="container text-center">
+        <% if (typeof message !=='undefined' ) { %>
+
+        <div class="<%= msg_type === 'error' ? 'alert alert-danger alert-dismissible fade show' : 'alert alert-success alert-dismissible fade show' %>" role="alert">
+            <%= message %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        <h1>Admin Requests</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% requests.forEach(function(request) { %>
+                <tr>
+                    <td>
+                        <%= request.user_id %>
+                    </td>
+                    <td>
+                        <%= request.username %>
+                    </td>
+                    <td>
+                        <div class="btn-group justify-content-center" role="group">
+                            <form action="/admin/accept_admin/<%= request.user_id %>" method="post">
+                                <button class="btn btn-success">Accept</button>
+                            </form>
+                            <form action="/admin/reject_admin/<%= request.user_id %>" method="post">
+                                <button class="btn btn-danger">Reject</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</body>
+
+</html>

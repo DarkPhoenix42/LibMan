@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1>Admin Dashboard</h1>
+        <div class="row">
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">View Books</h5>
+                        <p class="card-text">Click here to view all available books.</p>
+                        <a href="/books" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">View Checkin Requests</h5>
+                        <p class="card-text">Click here to view all the checkin requests for books.</p>
+                        <a href="/admin/checkin_requests" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">View Checkout Requests</h5>
+                        <p class="card-text">Click here to view all the checkout requests for books.</p>
+                        <a href="/admin/checkout_requests" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">View Admin Requests</h5>
+                        <p class="card-text">Click here to view users who have requested to be made admin.</p>
+                        <a href="/admin/admin_requests" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+
+
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">View Transaction History</h5>
+                        <p class="card-text">Click here to view the transaction history.</p>
+                        <a href="/admin/transaction_history" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">Add a Book.</h5>
+                        <p class="card-text">Click here to add a book to the catalog.</p>
+                        <a href="/admin/add_book" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">Delete a Book.</h5>
+                        <p class="card-text">Click here to delete a book from the catalog.</p>
+                        <a href="/admin/delete_book" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Book.</h5>
+                        <p class="card-text">Click here to update a book from the catalog.</p>
+                        <a href="/admin/update_book" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-3 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-body">
+                        <h5 class="card-title">Logout</h5>
+                        <p class="card-text">Click here to logout.</p>
+                        <a href="/logout" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
