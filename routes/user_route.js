@@ -29,7 +29,7 @@ const view_books = async (req, res) => {
         return res.render("../views/books.ejs", { books: [], message: 'Internal Server Error', msg_type: "error" });
     }
 
-};
+}
 
 const view_checkin = async (req, res) => {
     let user_id = req.user.id;
@@ -55,11 +55,11 @@ const checkout_book = async (req, res) => {
         results = await execute_query('SELECT * FROM books WHERE book_id = ?', [book_id]);
         if (results.length === 0) {
             req.session.message = "Invalid book_id!";
-            throw new Error("Invalid book_id!");
+            return res.redirect('/checkin');
         }
         else if (results[0].available_copies === 0) {
             req.session.message = "Book is not available for checkout!";
-            throw new Error("Book is not available for checkout!");
+            return res.redirect('/checkin');
         }
 
         const query = 'INSERT INTO transactions (book_id, user_id, borrow_date, type, status) VALUES (?, ?, ?, ?, ?)';
@@ -69,8 +69,8 @@ const checkout_book = async (req, res) => {
         req.session.message = "Book checkout requested successfully!";
         req.session.msg_type = "success";
     }
-    catch (err) {
-        req.session.message = err;
+    catch {
+        req.session.message = "Failed to request book checkout!";
     }
 
     return res.redirect('/books');
@@ -84,21 +84,25 @@ const checkin_book = async (req, res) => {
     try {
         results = await execute_query('SELECT * FROM transactions WHERE transaction_id = ?', [transaction_id]);
         if (results.length === 0) {
-            throw new Error("Invalid transaction_id!");
+            req.session.message = "Invalid transaction_id!";
+            return res.redirect('/checkin');
         }
         else if (results[0].type !== "checkout" && results[0].status === "accepted") {
-            throw new Error('Cannot check in book that is not checked out!');
+            req.session.message = 'Cannot check in book that is not checked out!';
+            return res.redirect('/checkin');
         }
         else if (results[0].user_id !== user_id) {
-            throw new Error('Cannot check in book that is not checked out by you!');
+            req.session.message = 'Cannot check in book that is not checked out by you!';
+            return res.redirect('/checkin');
+
         }
 
         await execute_query('UPDATE transactions SET type = "checkin", status = "pending" WHERE transaction_id = ?', [transaction_id]);
         req.session.message = "Book checkin requested successfully!";
         req.session.msg_type = "success";
     }
-    catch (err) {
-        req.session.message = err;
+    catch {
+        req.session.message = "Failed to request book checkin!";
     }
     return res.redirect('/checkin');
 
@@ -116,4 +120,23 @@ const view_history = async (req, res) => {
     }
 }
 
-module.exports = { home_view, view_books, view_checkin, checkout_book, checkin_book, view_history };
+const view_request_admin = async (req, res) => {
+    let { message, msg_type } = get_message(req);
+    return res.render('../views/user_request_admin.ejs', { message: message, msg_type: msg_type });
+}
+
+const request_admin = async (req, res) => {
+    let user_id = req.user.id;
+    req.session.msg_type = "error";
+    try {
+        await execute_query('update users set admin_request_status = "pending" WHERE user_id = ?', [user_id]);
+        req.session.message = "Admin request sent successfully!";
+        req.session.msg_type = "success";
+    }
+    catch {
+        req.session.message = "Internal Server Error!";
+    }
+    return res.redirect('/request_admin');
+}
+
+module.exports = { home_view, view_books, view_checkin, checkout_book, checkin_book, view_history, view_request_admin, request_admin };

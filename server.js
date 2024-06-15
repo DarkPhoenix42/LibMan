@@ -44,6 +44,9 @@ app.post('/checkout/:book_id', user_route.checkout_book)
 app.get('/checkin', user_route.view_checkin)
 app.post('/checkin/:transaction_id', user_route.checkin_book)
 
+app.get('/request_admin', user_route.view_request_admin)
+app.post('/request_admin', user_route.request_admin)
+
 app.get('/history', user_route.view_history)
 app.get('/logout', auth.logout);
 
