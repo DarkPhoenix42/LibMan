@@ -3,7 +3,7 @@ const { db, execute_query } = require('../database/db');
 const jwt = require('jsonwebtoken');
 
 const login_view = (req, res) => {
-    return res.render('../views/login.ejs');
+    return res.render('../views/auth/login.ejs');
 };
 
 const login = async (req, res) => {
@@ -54,7 +54,7 @@ const login = async (req, res) => {
 
 
 const register_view = (req, res) => {
-    return res.render('../views/register.ejs');
+    return res.render('../views/auth/register.ejs');
 };
 
 

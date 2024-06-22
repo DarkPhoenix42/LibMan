@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `library`;
+DROP DATABASE IF EXISTS `library`;
+CREATE DATABASE `library`;
 
 use library;
 
