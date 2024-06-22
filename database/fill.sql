@@ -1,7 +1,7 @@
 use library;
 
 INSERT INTO books (title, author, genre, available_copies) VALUES
-("And Then there were none", "Agatha Christie", "Mystery", 25),
+("And Then There Were None", "Agatha Christie", "Mystery", 25),
 ("1984", "George Orwell", "Dystopian", 20),
 ("To Kill a Mockingbird", "Harper Lee", "Fiction", 15),
 ("The Great Gatsby", "F. Scott Fitzgerald", "Classic", 18),
