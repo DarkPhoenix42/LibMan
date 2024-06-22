@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a library management system that allows users to efficiently manage their library collections. It provides features such as adding, searching, and borrowing books, as well as keeping track of due dates and overdue books.
+This project is a library management system that allows users to efficiently manage their library collections.
 
 ## Features
 
@@ -22,7 +22,7 @@ This project is a library management system that allows users to efficiently man
 
 1. Clone the repository.
 2. Start a my sql server and source the file database/schema.sql
-3. Set the environment variables as shown in .envsample.
+3. Set the environment variables as shown in .envsample in a file called `config.env`.
 4. Start the server using `node server.js`
 5. Connect to the server at `localhost:3000`
 6. Optionally, after registering a first user, you can source the database/fill.sql to fill the library with some sample books.

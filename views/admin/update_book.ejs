@@ -14,19 +14,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand" href="/">Home</a>
-    </nav>
+    <%- include('../partials/nav.ejs') %>
     <div class="container text-center mt-6">
-        <% if (typeof message !=='undefined' ) { %>
-
-        <div class="<%= msg_type === 'error' ? 'alert alert-danger alert-dismissible fade show' : 'alert alert-success alert-dismissible fade show' %>" role="alert">
-            <%= message %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <% } %>
+        <%- include('../partials/alert_box.ejs') %>
         <h1>Select a Book to Update</h1>
         <form action="/admin/update_book/" method="post">
             <div class="form-group">
@@ -70,11 +60,11 @@
             $.ajax({
                 url: '/admin/get_book/' + book_id,
                 type: 'POST',
-                success: function(data) {
-                    document.getElementById('title').value = data.title;
-                    document.getElementById('author').value = data.author;
-                    document.getElementById('genre').value = data.genre;
-                    document.getElementById('available_copies').value = data.available_copies;
+                success: function(book) {
+                    document.getElementById('title').value = book.title;
+                    document.getElementById('author').value = book.author;
+                    document.getElementById('genre').value = book.genre;
+                    document.getElementById('available_copies').value = book.available_copies;
                 }
             });
 

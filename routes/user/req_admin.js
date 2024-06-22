@@ -1,17 +1,17 @@
-const { db, execute_query } = require('../../database/db');
+const { db, execute_query } = require('../../database/db')
 
 const request_admin = async (req, res) => {
-    let user_id = req.user.id;
-    req.session.msg_type = "error";
+    let user_id = req.user.id
+    const query = 'UPDATE users SET admin_request_status = "pending" WHERE user_id = ?'
     try {
-        await execute_query('update users set admin_request_status = "pending" WHERE user_id = ?', [user_id]);
-        req.session.message = "Admin request sent successfully!";
-        req.session.msg_type = "success";
+        await execute_query(query, [user_id])
+        req.session.message = 'Admin request sent successfully!'
+        req.session.msg_type = 'success'
+    } catch {
+        req.session.message = 'Internal Server Error!'
+        req.session.msg_type = 'error'
     }
-    catch {
-        req.session.message = "Internal Server Error!";
-    }
-    return res.redirect('/request_admin');
-};
+    return res.redirect('/request_admin')
+}
 
-module.exports = { request_admin };
+module.exports = { request_admin }

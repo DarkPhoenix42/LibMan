@@ -6,30 +6,37 @@
 
 <body>
     <%- include('../partials/nav.ejs') %>
-
     <div class="container text-center mt-6">
         <%- include('../partials/alert_box.ejs') %>
         <h1>Book List</h1>
         <table class="table mt-5">
             <thead>
                 <tr>
-                    <th>Book</th>
-                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Available Copies</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% transactions.forEach(function(transaction) { %>
+                <% books.forEach(function(book) { %>
                 <tr>
                     <td>
-                        <%= transaction.title %>
+                        <%= book.title %>
                     </td>
                     <td>
-                        <%= transaction.borrow_date.toLocaleDateString("en-US") %>
+                        <%= book.author %>
                     </td>
                     <td>
-                        <form action="/checkin/<%= transaction.transaction_id %>" method="post">
-                            <button class="btn btn-primary">Checkin</button>
+                        <%= book.genre %>
+                    </td>
+                    <td>
+                        <%= book.available_copies%>
+                    </td>
+                    <td>
+                        <form action="/checkout/<%= book.book_id %>" method="post">
+                            <button class="btn btn-primary">Checkout</button>
                         </form>
                     </td>
                 </tr>
@@ -38,7 +45,6 @@
         </table>
     </div>
     </div>
-
 </body>
 
 </html>
