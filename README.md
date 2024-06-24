@@ -21,9 +21,9 @@ This project is a library management system that allows users to efficiently man
 ## Setup
 
 1. Clone the repository.
-2. Start a my sql server and source the file database/schema.sql
-3. Set the environment variables as shown in .envsample in a file called `config.env`.
-4. Start the server using `node server.js`
-5. Connect to the server at `localhost:3000`
-6. Optionally, after registering a first user, you can source the database/fill.sql to fill the library with some sample books.
-7. The first registered user is made admin by default.
+2. Set the environment variables as shown in .envsample in a file called `config.env`.
+3. Note that if you are using docker, modify the docker-compose file so that `MYSQL_ROOT_PASSWORD` and `DB_PASS` in config.env are same.  
+4. Start the docker containers using `docker compose up` and connect at `localhost:3000`.
+
+## Note
+The first user is made admin by default.

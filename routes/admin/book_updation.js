@@ -61,7 +61,7 @@ const delete_book = async (req, res) => {
             return res.redirect('/admin/delete_book')
         }
 
-        query = 'DELETE FROM transactions WHERE book_id = ?'
+        query = 'DELETE FROM books WHERE book_id = ?'
         await execute_query(query, [book_id])
         req.session.message = 'Book Deleted successfully!'
         req.session.msg_type = 'success'
