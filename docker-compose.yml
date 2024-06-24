@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+    mysqldb:
+        image: mysql:latest
+        volumes:
+            - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+        networks:
+            - libman
+        healthcheck:
+            test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+            retries: 10
+            interval: 3s
+            timeout: 30s
+        restart: always
+    libman:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - 3000:3000
+        depends_on:
+            mysqldb:
+                condition: service_healthy
+        networks:
+            - libman
+volumes:
+    mysqldb:
+
+networks:
+    libman:
+        driver: bridge

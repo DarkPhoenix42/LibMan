@@ -16,16 +16,27 @@ const checkout_book = async (req, res) => {
             req.session.message = 'Book is not available for checkout!'
             return res.redirect('/books')
         }
-        query =
-            'SELECT * FROM transactions WHERE user_id = ? AND book_id = ? AND status="pending" AND type="checkout"'
+        query = 'SELECT * FROM transactions WHERE user_id = ? AND book_id = ?'
 
         results = await execute_query(query, [user_id, book_id])
 
         if (results.length > 0) {
+            for (let i = 0; i < results.length; i++) {
+                if (results[i].status === 'pending' && results[i].type === 'checkout') {
+                    req.session.message = 'Book checkout already requested!'
+                    return res.redirect('/books')
+                } else if (results[i].status === 'accepted' && results[i].type === 'checkout') {
+                    req.session.message = 'Book already checked out!'
+                    return res.redirect('/books')
+                } else if (results[i].status === 'pending' && results[i].type === 'checkin') {
+                    req.session.message = 'Book not checked in yet!'
+                    return res.redirect('/books')
+                }
+            }
             req.session.message = 'Book checkout already requested!'
             return res.redirect('/books')
         }
-        
+
         query =
             'INSERT INTO transactions (book_id, user_id, borrow_date, type, status) VALUES (?, ?, ?, ?, ?)'
 

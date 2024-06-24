@@ -1,7 +1,7 @@
-DB_USER=
-DB_PASS=
-DB_HOST=
-DB_PORT=
-DB_NAME=
-JWT_SECRET=
-SESSION_SECRET=
+DB_USER=root
+DB_PASS=password
+DB_HOST=mysqldb
+DB_PORT=3306
+DB_NAME=library
+JWT_SECRET=myjwtsecret
+SESSION_SECRET=mysessionsecret
