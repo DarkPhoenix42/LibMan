@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS `library`;
-CREATE DATABASE `library`;
+DROP DATABASE IF EXISTS `libman`;
+CREATE DATABASE `libman`;
 
-use library;
+use libman;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,

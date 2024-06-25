@@ -16,7 +16,6 @@ const accept_checkout = async (req, res) => {
         req.session.message = 'Internal Server Error!'
         req.session.msg_type = 'error'
     }
-
     return res.redirect('/admin/checkout_requests')
 }
 

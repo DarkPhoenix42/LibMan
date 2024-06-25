@@ -31,7 +31,7 @@ const view_books = async (req, res) => {
     } catch {
         return res.render('user/books.ejs', {
             books: [],
-            message: 'Internal Server Error',
+            message: 'Internal Server Error!',
             msg_type: 'error',
         })
     }
@@ -53,7 +53,7 @@ const view_checkin = async (req, res) => {
     } catch {
         return res.render('user/checkin.ejs', {
             transactions: [],
-            message: 'Internal Server Error',
+            message: 'Internal Server Error!',
             msg_type: 'error',
         })
     }
@@ -69,7 +69,7 @@ const view_history = async (req, res) => {
     } catch {
         return res.render('user/history.ejs', {
             transactions: [],
-            message: 'Internal Server Error',
+            message: 'Internal Server Error!',
             msg_type: 'error',
         })
     }

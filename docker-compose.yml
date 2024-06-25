@@ -4,9 +4,10 @@ services:
         image: mysql:latest
         volumes:
             - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-        ports:
-            - 3306:3306
+        expose:
+            - '3306'
         environment:
+            - ON_CREATE_DB=libman
             - MYSQL_ROOT_PASSWORD=password
         networks:
             - libman
@@ -27,6 +28,8 @@ services:
                 condition: service_healthy
         networks:
             - libman
+        restart: always
+
 volumes:
     mysqldb:
 

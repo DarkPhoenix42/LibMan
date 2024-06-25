@@ -1,7 +1,6 @@
 DB_USER=root
 DB_PASS=password
 DB_HOST=mysqldb
-DB_PORT=3306
 DB_NAME=library
 JWT_SECRET=myjwtsecret
 SESSION_SECRET=mysessionsecret
